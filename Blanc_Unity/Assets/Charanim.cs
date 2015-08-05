@@ -54,6 +54,9 @@ public class Charanim : MonoBehaviour
     void Update()
     {
 
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+
         if (animator)
         {
             h = Input.GetAxis("Horizontal");
