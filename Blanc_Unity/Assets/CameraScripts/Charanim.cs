@@ -63,7 +63,7 @@ public class Charanim : MonoBehaviour
             speed = Input.GetAxis("Vertical");
 
             CheckButton();
-            CheckRun();           
+            //CheckRun();           
 
             if ((h >= .1) || (h <= -.1))
             {
@@ -100,24 +100,24 @@ public class Charanim : MonoBehaviour
         }
     }
 
-    public void CheckRun()
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
-            run = true;
-        else
-            run = false;
+    //public void CheckRun()
+    //{
+    //    if (Input.GetKey(KeyCode.LeftShift))
+    //        run = true;
+    //    else
+    //        run = false;
 
 
-        if (run == true)
-        {
+    //    if (run == true)
+    //    {
 
-            animator.SetBool("RunCheck", true);
-        }
-        if (run == false)
-        {
+    //        animator.SetBool("RunCheck", true);
+    //    }
+    //    if (run == false)
+    //    {
 
-            animator.SetBool("RunCheck", false);
-        }
-    }
+    //        animator.SetBool("RunCheck", false);
+    //    }
+    //}
 }
 

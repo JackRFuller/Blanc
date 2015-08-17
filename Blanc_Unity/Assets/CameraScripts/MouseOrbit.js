@@ -10,6 +10,8 @@ var yMaxLimit = 80;
 private var x = 0.0;
 private var y = 0.0;
 
+var X_Offset = 1.0;
+
 @script AddComponentMenu("Camera-Control/Mouse Orbit")
 
 function Start () {
@@ -30,7 +32,7 @@ function LateUpdate () {
  		y = ClampAngle(y, yMinLimit, yMaxLimit);
  		       
         var rotation = Quaternion.Euler(y, x, 0);
-        var position = rotation * Vector3(0.0, 0.0, -distance) + target.position;
+        var position = rotation * Vector3(X_Offset, 0.0, -distance) + target.position;
         
         transform.rotation = rotation;
         transform.position = position;

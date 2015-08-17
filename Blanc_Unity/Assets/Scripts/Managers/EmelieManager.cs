@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EmelieManager : MonoBehaviour {
 
+    #region Enums
+
     public enum LevelState
     {
         Building1,
@@ -19,8 +21,13 @@ public class EmelieManager : MonoBehaviour {
 
     public LevelState CurrentLevelState;
 
-	// Use this for initialization
-	void Start () {
+    #endregion
+
+    public Color StartColor;
+    public Color EndColor;
+
+    // Use this for initialization
+    void Start () {
 
         CurrentLevelState = LevelState.Building1;
 	
