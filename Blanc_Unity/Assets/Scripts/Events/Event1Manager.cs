@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class Event1Manager : MonoBehaviour {
 
+	[SerializeField] private GameObject E;
+
 	[SerializeField] private int EventStage = 0;
 
     [Header("Text Effects")]
@@ -13,6 +15,18 @@ public class Event1Manager : MonoBehaviour {
     [Header("Event A")]
     [SerializeField] private Animation TextWall_1;
     [SerializeField] private Animator TextItem_1;
+
+	[Header("Event B")]
+	[SerializeField] private Animation TextWall_2;
+
+	[Header("Event C")]
+	[SerializeField] private Animation TextWall_3;
+
+	[Header("Event D")]
+	[SerializeField] private Animation TextWall_4;
+
+	[Header("Event E")]
+	[SerializeField] private Animation[] TextWalls;
 
 	// Use this for initialization
 	void Start () {
@@ -27,11 +41,18 @@ public class Event1Manager : MonoBehaviour {
                 StartCoroutine(EventA());
 			break;
 		case 1:
+			EventB();
 			break;
 		case 2:
+			EventC();
 			break;
 		case 3:
+			EventD ();
 			break;
+		
+		case 4:
+			StartCoroutine(EventE());
+		break;
 		}
 	}
 
@@ -39,11 +60,37 @@ public class Event1Manager : MonoBehaviour {
     {
         TextWall_1.Play();        
         yield return new WaitForSeconds(TextWall_1.clip.length);
-        TextItem_1.enabled = true;
+		EventStage++;
 
-        //CurrentText = TextItem_1;
-        //TextFadeIn();
     }
+
+	void EventB()
+	{
+		TextWall_2.Play();
+		EventStage++;
+		E.GetComponent<Rigidbody>().isKinematic = false;
+	}
+
+	void EventC()
+	{
+		TextWall_3.Play();
+		EventStage++;
+	}
+
+	void EventD()
+	{
+		TextWall_4.Play();
+		EventStage++;
+	}
+
+	IEnumerator EventE(){
+
+		for(int i = 0; i < 3; i++)
+		{
+			TextWalls[i].Play();
+			yield return new WaitForSeconds(TextWalls[i].clip.length);
+		}
+	}
 
     void TextFadeIn()
     {

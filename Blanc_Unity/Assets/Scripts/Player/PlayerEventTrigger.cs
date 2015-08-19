@@ -24,6 +24,8 @@ public class PlayerEventTrigger : MonoBehaviour {
 		if(cc_Hit.tag == "Event Trigger")
 		{
 			DetermineEvent();
+			cc_Hit.isTrigger = false;
+			cc_Hit.enabled = false;
 		}
 	}
 
