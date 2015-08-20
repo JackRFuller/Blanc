@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Event1Manager : MonoBehaviour {
 
+    [SerializeField] private GameManager GM_Script;
 	[SerializeField] private GameObject E;
 
 	[SerializeField] private int EventStage = 0;
@@ -28,10 +29,28 @@ public class Event1Manager : MonoBehaviour {
 	[Header("Event E")]
 	[SerializeField] private Animation[] TextWalls;
 
+    [Header("Event F")]
+    [SerializeField] private E_Behaviour E_Script;
+
 	// Use this for initialization
 	void Start () {
 	
 	}
+
+    void Update()
+    {     
+        if(GM_Script.CurrentLevelState == GameManager.LevelState.Building1)
+        {
+            if (EventStage == 5)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    StartCoroutine(E_Script.WakeUp());
+                }
+            }
+        }   
+        
+    }
 
 	public void TriggerEventStage()
 	{
@@ -90,6 +109,7 @@ public class Event1Manager : MonoBehaviour {
 			TextWalls[i].Play();
 			yield return new WaitForSeconds(TextWalls[i].clip.length);
 		}
+        EventStage++;
 	}
 
     void TextFadeIn()
