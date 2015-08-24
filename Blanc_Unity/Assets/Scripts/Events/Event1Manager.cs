@@ -9,25 +9,12 @@ public class Event1Manager : MonoBehaviour {
 
 	[SerializeField] private int EventStage = 0;
 
+	[Header("Text Walls")]
+	[SerializeField] private Animation[] TextWalls;
+
     [Header("Text Effects")]
     [SerializeField] private Text CurrentText;
-    [SerializeField] private float FadeInSpeed;
-
-    [Header("Event A")]
-    [SerializeField] private Animation TextWall_1;
-    [SerializeField] private Animator TextItem_1;
-
-	[Header("Event B")]
-	[SerializeField] private Animation TextWall_2;
-
-	[Header("Event C")]
-	[SerializeField] private Animation TextWall_3;
-
-	[Header("Event D")]
-	[SerializeField] private Animation TextWall_4;
-
-	[Header("Event E")]
-	[SerializeField] private Animation[] TextWalls;
+    [SerializeField] private float FadeInSpeed; 
 
     [Header("Event F")]
     [SerializeField] private E_Behaviour E_Script;
@@ -45,6 +32,10 @@ public class Event1Manager : MonoBehaviour {
             {
                 if (Input.GetMouseButton(0))
                 {
+					foreach(Animation Wall in TextWalls)
+					{
+						Wall.Play("Lower");
+					}
                     StartCoroutine(E_Script.WakeUp());
                 }
             }
@@ -77,37 +68,37 @@ public class Event1Manager : MonoBehaviour {
 
     IEnumerator EventA()
     {
-        TextWall_1.Play();        
-        yield return new WaitForSeconds(TextWall_1.clip.length);
+		TextWalls[0].Play("Raise"); 
+		yield return new WaitForSeconds(TextWalls[0].GetClip("Raise").length);
 		EventStage++;
 
     }
 
 	void EventB()
 	{
-		TextWall_2.Play();
+		TextWalls[1].Play("Raise"); 
 		EventStage++;
 		E.GetComponent<Rigidbody>().isKinematic = false;
 	}
 
 	void EventC()
 	{
-		TextWall_3.Play();
+		TextWalls[2].Play("Raise"); 
 		EventStage++;
 	}
 
 	void EventD()
 	{
-		TextWall_4.Play();
+		TextWalls[3].Play("Raise"); 
 		EventStage++;
 	}
 
 	IEnumerator EventE(){
 
-		for(int i = 0; i < 3; i++)
+		for(int i = 4; i < TextWalls.Length; i++)
 		{
-			TextWalls[i].Play();
-			yield return new WaitForSeconds(TextWalls[i].clip.length);
+			TextWalls[i].Play("Raise");
+			yield return new WaitForSeconds(TextWalls[i].GetClip("Raise").length);
 		}
         EventStage++;
 	}
