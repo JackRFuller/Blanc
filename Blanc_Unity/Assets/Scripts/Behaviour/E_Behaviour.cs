@@ -15,6 +15,9 @@ public class E_Behaviour : MonoBehaviour {
 	[Header("Raising Up")]
 	[SerializeField] private Animation E_Animations;
 
+	[Header("Building 2")]
+	[SerializeField] private Event2Manager E2_Script;
+
 	// Use this for initialization
 	void Start () {
 
@@ -47,7 +50,13 @@ public class E_Behaviour : MonoBehaviour {
 		E_RB.useGravity = false;
 		E_Animations.Play("RaiseUp");
 		yield return new WaitForSeconds(E_Animations.GetClip("RaiseUp").length);
+		BeginEvent2();
 
+	}
+
+	void BeginEvent2()
+	{
+		E2_Script.BeginWaypointFollow();
 	}
 
 
