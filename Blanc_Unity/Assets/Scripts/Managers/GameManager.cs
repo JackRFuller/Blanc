@@ -23,14 +23,6 @@ public class GameManager : MonoBehaviour {
 	
 	#endregion
 
-	#region Event Managers
-
-	public Event1Manager E1M_Script;
-
-	#endregion
-
-	[SerializeField] PlayerEventTrigger PET_Script;
-
 	// Use this for initialization
 	void Start () {
 
